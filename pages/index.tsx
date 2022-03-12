@@ -1,5 +1,5 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
@@ -9,16 +9,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1>
-          개인회원 가입
-        </h1>
+        <h1>개인회원 가입</h1>
       </main>
 
       <footer>
         <p>© JOBKOREA LLC.</p>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
