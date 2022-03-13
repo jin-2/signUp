@@ -10,6 +10,7 @@ export default function Title({ children, element = "h2" }: TitleProps) {
 }
 
 const TitleEl = styled.h2`
+  display: inline-block;
   margin-bottom: 25px;
   color: #222;
   font-weight: bold;

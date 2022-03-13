@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 interface InputProps {
-  type: "text" | "email";
+  name: string;
+  type: "text" | "email" | "password";
   label: string;
   message: string;
   maxlength: number;
@@ -9,6 +10,7 @@ interface InputProps {
 }
 
 export default function Input({
+  name,
   type,
   label,
   message,
@@ -19,6 +21,7 @@ export default function Input({
     <InputEl>
       <label className="label">
         <input
+          name={name}
           type={type}
           className="input"
           maxLength={maxlength}

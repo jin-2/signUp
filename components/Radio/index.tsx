@@ -2,13 +2,20 @@ import styled from "styled-components";
 
 interface RadioProps {
   children: React.ReactNode;
+  name: string;
+  value: string;
 }
 
-export default function Radio({ children }: RadioProps) {
+export default function Radio({ children, name, value }: RadioProps) {
   return (
     <RadioEl>
       <label className="label">
-        <input type="radio" className="visually-hidden" />
+        <input
+          type="radio"
+          name={name}
+          value={value}
+          className="visually-hidden"
+        />
         <span className="label-text">{children}</span>
       </label>
     </RadioEl>

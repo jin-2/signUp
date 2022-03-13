@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 interface CheckboxProps {
   children: React.ReactNode;
+  name: string;
 }
 
-export default function Checkbox({ children }: CheckboxProps) {
+export default function Checkbox({ children, name }: CheckboxProps) {
   return (
     <CheckboxEl>
       <label className="label">
-        <input type="checkbox" className="visually-hidden" />
+        <input type="checkbox" name={name} className="visually-hidden" />
         <span className="label-text">{children}</span>
       </label>
     </CheckboxEl>
