@@ -6,6 +6,7 @@ import Mark from "components/Mark";
 import Title from "components/Title";
 import Radio from "components/Radio";
 import Button from "components/Button";
+import ButtonIcon from "components/ButtonIcon";
 
 const Home: NextPage = () => {
   return (
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
         />
 
         <Title>약관동의</Title>
+        <ButtonIcon />
         <Checkbox>
           필수동의 항목 및 개인정보수집 및 이용 동의(선택), 광고성 정보 수신
           동의(선택)에 전체 동의합니다.
