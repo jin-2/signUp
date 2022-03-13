@@ -4,6 +4,7 @@ import Input from "components/Input";
 import Checkbox from "components/Checkbox";
 import Mark from "components/Mark";
 import Title from "components/Title";
+import Radio from "components/Radio";
 
 const Home: NextPage = () => {
   return (
@@ -30,6 +31,10 @@ const Home: NextPage = () => {
         <Checkbox>
           <Mark color="secondary">(선택)</Mark> 개인정보수집 및 이용 동의
         </Checkbox>
+
+        <Radio>1년</Radio>
+        <Radio>3년</Radio>
+        <Radio>회원탈퇴시</Radio>
       </form>
     </>
   );
