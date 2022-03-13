@@ -9,7 +9,12 @@ const Home: NextPage = () => {
         <title>개인회원 가입 | 알바몬</title>
       </Head>
       <div>
-        <Input />
+        <Input
+          type="text"
+          label="아이디"
+          message="아이디를 입력해주세요."
+          maxlength={16}
+        />
       </div>
     </>
   );
