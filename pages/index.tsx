@@ -5,6 +5,7 @@ import Checkbox from "components/Checkbox";
 import Mark from "components/Mark";
 import Title from "components/Title";
 import Radio from "components/Radio";
+import Button from "components/Button";
 
 const Home: NextPage = () => {
   return (
@@ -35,6 +36,9 @@ const Home: NextPage = () => {
         <Radio>1년</Radio>
         <Radio>3년</Radio>
         <Radio>회원탈퇴시</Radio>
+
+        <Button>가입하기</Button>
+        <Button disabled={true}>가입하기</Button>
       </form>
     </>
   );

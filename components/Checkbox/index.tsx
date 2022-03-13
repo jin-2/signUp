@@ -36,6 +36,7 @@ const CheckboxEl = styled.p`
       width: 16px;
       height: 16px;
       border: 1px solid #ced3d7;
+      border-radius: 1px;
     }
 
     &::after {
