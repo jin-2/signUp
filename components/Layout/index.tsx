@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
         <h1>개인회원 가입</h1>
       </HeaderEl>
 
-      <LayoutEl>{children}</LayoutEl>
+      <main>{children}</main>
 
       <FooterEl>
         <p>© JOBKOREA LLC.</p>
@@ -19,10 +19,6 @@ export default function Layout({ children }: LayoutProps) {
     </div>
   );
 }
-
-const LayoutEl = styled.main`
-  padding: 18px;
-`;
 
 const HeaderEl = styled.header`
   padding: 14px 18px;
@@ -33,6 +29,7 @@ const HeaderEl = styled.header`
 `;
 
 const FooterEl = styled.footer`
+  margin-top: 30px;
   padding: 20px 5px;
   border-top: 1px solid #d0d0d0;
   background-color: #f2f2f2;

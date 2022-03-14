@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { changeEventType } from "types/common";
 
 interface InputProps {
   name: string;
@@ -6,6 +7,8 @@ interface InputProps {
   label: string;
   message: string;
   maxlength: number;
+  value: string;
+  handleChange: changeEventType;
   required?: boolean;
 }
 
@@ -15,6 +18,8 @@ export default function Input({
   label,
   message,
   maxlength,
+  value,
+  handleChange,
   required = true
 }: InputProps) {
   return (
@@ -26,6 +31,9 @@ export default function Input({
           className="input"
           maxLength={maxlength}
           required={required}
+          value={value}
+          onChange={handleChange}
+          autoComplete="off"
         />
         <span className="label-text">{label}</span>
       </label>
@@ -35,6 +43,8 @@ export default function Input({
 }
 
 const InputEl = styled.div`
+  margin-bottom: 14px;
+
   .label {
     position: relative;
     display: block;
@@ -63,7 +73,8 @@ const InputEl = styled.div`
     }
 
     &:valid + .label-text,
-    &:focus + .label-text {
+    &:focus + .label-text,
+    &:not([value=""]) + .label-text {
       top: -28px;
       font-size: 11px;
     }
@@ -73,6 +84,7 @@ const InputEl = styled.div`
     padding: 8px 0 10px;
     font-size: 11px;
     letter-spacing: -1px;
+    color: ${({ theme }) => theme.colors.red};
   }
 
   .invalid {
