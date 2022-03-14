@@ -1,15 +1,27 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Input from "components/Input";
-import Checkbox from "components/Checkbox";
-import Mark from "components/Mark";
 import Title from "components/Title";
 import Radio from "components/Radio";
 import Button from "components/Button";
 import ButtonIcon from "components/ButtonIcon";
+import Inner from "components/Inner";
+import SignupAgreement from "container/SignupAgreement";
+import useForm from "hooks/useForm";
+import { submitEventType } from "types/common";
+import { FormDataType } from "types/form";
 
 const Home: NextPage = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { values, handleChange, message, touched } = useForm<FormDataType>({
+    id: "",
+    password: "",
+    userName: "",
+    email: "",
+    agreement: [],
+    storagePeriod: null
+  });
+
+  const handleSubmit: submitEventType = (e) => {
     e.preventDefault();
   };
 
@@ -19,83 +31,72 @@ const Home: NextPage = () => {
         <title>개인회원 가입 | 알바몬</title>
       </Head>
       <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="UserId"
-          label="아이디"
-          message="아이디를 입력해주세요."
-          maxlength={16}
-        />
+        <Inner>
+          <Input
+            type="text"
+            name="id"
+            label="아이디"
+            message={(touched.id && message.id) || ""}
+            maxlength={16}
+            value={values.id}
+            handleChange={handleChange}
+          />
 
-        <Input
-          name="UserPwd"
-          type="password"
-          label="비밀번호"
-          message="mm"
-          maxlength={16}
-        />
+          <Input
+            name="password"
+            type="text"
+            label="비밀번호"
+            message={(touched.password && message.password) || ""}
+            maxlength={16}
+            value={values.password}
+            handleChange={handleChange}
+          />
 
-        <Input
-          name="Name"
-          type="text"
-          label="이름"
-          message="mm"
-          maxlength={12}
-        />
+          <Input
+            name="userName"
+            type="text"
+            label="이름"
+            message={(touched.userName && message.userName) || ""}
+            maxlength={12}
+            value={values.userName}
+            handleChange={handleChange}
+          />
 
-        <Input
-          name="EmailId"
-          type="email"
-          label="이메일"
-          message="mm"
-          maxlength={50}
-        />
+          <Input
+            name="email"
+            type="email"
+            label="이메일"
+            message={(touched.email && message.email) || ""}
+            maxlength={50}
+            value={values.email}
+            handleChange={handleChange}
+          />
+        </Inner>
 
-        <div>
-          <Title>약관동의</Title>
-        </div>
+        <Inner>
+          <SignupAgreement />
+        </Inner>
 
-        <Checkbox name="agreeChkAll">
-          필수동의 항목 및 개인정보수집 및 이용 동의(선택), 광고성 정보 수신
-          동의(선택)에 전체 동의합니다.
-        </Checkbox>
+        <Inner>
+          <div>
+            <Title>개인정보 유효기간</Title>
+            <ButtonIcon />
+          </div>
 
-        <Checkbox name="Agree5">
-          <Mark>(필수)</Mark> 만 15세 이상입니다.
-        </Checkbox>
+          <Radio name="storagePeriod" value="365">
+            1년
+          </Radio>
+          <Radio name="storagePeriod" value="1095">
+            3년
+          </Radio>
+          <Radio name="storagePeriod" value="0">
+            회원탈퇴시
+          </Radio>
+        </Inner>
 
-        <Checkbox name="Agree1">
-          <Mark>(필수)</Mark> 서비스 이용약관 동의
-        </Checkbox>
-
-        <Checkbox name="Agree2">
-          <Mark>(필수)</Mark> 개인정보수집 및 이용 동의
-        </Checkbox>
-
-        <Checkbox name="Agree4">
-          <Mark color="secondary">(선택)</Mark> 개인정보수집 및 이용 동의
-        </Checkbox>
-
-        <Checkbox name="Agree3">
-          <Mark color="secondary">(선택)</Mark> 광고성 정보 이메일/SMS 수신 동의
-        </Checkbox>
-
-        <div>
-          <Title>개인정보 유효기간</Title>
-          <ButtonIcon />
-        </div>
-
-        <Radio name="Valid_Day_Cnt" value="365">
-          1년
-        </Radio>
-        <Radio name="Valid_Day_Cnt" value="1095">
-          3년
-        </Radio>
-        <Radio name="Valid_Day_Cnt" value="0">
-          회원탈퇴시
-        </Radio>
-
-        <Button>가입하기</Button>
+        <Inner paddingTop="44px">
+          <Button>가입하기</Button>
+        </Inner>
       </form>
     </>
   );
