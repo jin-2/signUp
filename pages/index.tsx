@@ -69,6 +69,13 @@ const SignupPage: NextPage = () => {
     onSubmit
   );
 
+  const isDisabledSubmitButton = () => {
+    if (!Object.keys(touched).length) {
+      return true;
+    }
+    return Object.values(message).filter((v) => v).length !== 0;
+  };
+
   return (
     <>
       <Head>
@@ -128,11 +135,7 @@ const SignupPage: NextPage = () => {
         <Inner paddingTop="44px">
           <Button
             disabled={submitting}
-            className={
-              Object.values(message).filter((v) => v).length !== 0
-                ? "disabled"
-                : ""
-            }
+            className={isDisabledSubmitButton() ? "disabled" : ""}
           >
             가입하기
           </Button>

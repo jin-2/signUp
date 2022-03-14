@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Title from "components/Title";
 import Checkbox from "components/Checkbox";
 import Mark from "components/Mark";
@@ -30,36 +30,34 @@ export default function SignupAgreement({ setValue }: SignupAgreementProps) {
     Agree3: false
   });
 
-  useEffect(() => {
-    setValue(
-      "agreement",
-      Object.keys(checkList).filter((item) => checkList[item])
-    );
-  }, [checkList]);
-
-  const handleChangeAllCheckbox: changeEventType = ({
-    target: { name, checked }
-  }) => {
-    const newObj = Object.keys(checkList).reduce(
+  const getNewCheckList = (checked: boolean) => {
+    return Object.keys(checkList).reduce(
       (obj, key) => ({
         ...obj,
         [key]: checked
       }),
       {}
     );
-    setCheckList((prevState) => ({
-      ...prevState,
-      ...newObj
-    }));
+  };
+
+  const setCheckedNameList = (obj: CheckListType) => {
+    return Object.keys(obj).filter((item) => obj[item]);
+  };
+
+  const handleChangeAllCheckbox: changeEventType = ({
+    target: { checked }
+  }) => {
+    const newObj: CheckListType = { ...checkList, ...getNewCheckList(checked) };
+    setCheckList(newObj);
+    setValue("agreement", setCheckedNameList(newObj));
   };
 
   const handleChangeCheckbox: changeEventType = ({
     target: { name, checked }
   }) => {
-    setCheckList((prevState) => ({
-      ...prevState,
-      [name]: checked
-    }));
+    const newObj = { ...checkList, [name]: checked };
+    setCheckList(newObj);
+    setValue("agreement", setCheckedNameList(newObj));
   };
 
   const setCheckedAllCheckbox = () => {
