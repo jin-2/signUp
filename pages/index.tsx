@@ -8,29 +8,30 @@ import ButtonIcon from "components/ButtonIcon";
 import Inner from "components/Inner";
 import SignupAgreement from "container/SignupAgreement";
 import useForm from "hooks/useForm";
-import { submitEventType } from "types/common";
 import { FormDataType } from "types/form";
 
 const SignupPage: NextPage = () => {
-  const { values, handleChange, message, touched } = useForm<FormDataType>({
-    id: "",
-    password: "",
-    userName: "",
-    email: "",
-    agreement: [],
-    storagePeriod: null
-  });
+  const onSubmit = () => {};
 
-  const handleSubmit: submitEventType = (e) => {
-    e.preventDefault();
-  };
+  const { values, handleChange, message, touched, handleSubmit, setValue } =
+    useForm<FormDataType>(
+      {
+        id: "",
+        password: "",
+        userName: "",
+        email: "",
+        agreement: [],
+        storagePeriod: null
+      },
+      onSubmit
+    );
 
   return (
     <>
       <Head>
         <title>개인회원 가입 | 알바몬</title>
       </Head>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <Inner>
           <Input
             type="text"
@@ -73,9 +74,7 @@ const SignupPage: NextPage = () => {
           />
         </Inner>
 
-        <Inner>
-          <SignupAgreement />
-        </Inner>
+        <SignupAgreement setValue={setValue} />
 
         <Inner>
           <div>

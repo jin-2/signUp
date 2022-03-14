@@ -1,15 +1,29 @@
 import styled from "styled-components";
+import { changeEventType } from "types/common";
 
 interface CheckboxProps {
   children: React.ReactNode;
   name: string;
+  checked: boolean;
+  handleChange: changeEventType;
 }
 
-export default function Checkbox({ children, name }: CheckboxProps) {
+export default function Checkbox({
+  children,
+  name,
+  checked,
+  handleChange
+}: CheckboxProps) {
   return (
     <CheckboxEl>
       <label className="label">
-        <input type="checkbox" name={name} className="visually-hidden" />
+        <input
+          type="checkbox"
+          name={name}
+          checked={checked}
+          onChange={handleChange}
+          className="visually-hidden"
+        />
         <span className="label-text">{children}</span>
       </label>
     </CheckboxEl>
