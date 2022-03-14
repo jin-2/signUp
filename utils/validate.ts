@@ -16,8 +16,8 @@ export default function validate({
   password = "",
   userName = "",
   email = "",
-  agreement,
-  storagePeriod
+  agreement = [],
+  storagePeriod = null
 }: FormDataPartial) {
   console.log(id, password, userName, email);
   let isValid = false;
@@ -58,6 +58,18 @@ export default function validate({
     msg.email = "이메일을 입력해주세요.";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
     msg.email = "이메일을 올바르게 입력해주세요.";
+  }
+
+  if (!agreement?.includes("Agree5")) {
+    msg.agreement = "만 15세 이상 확인에 동의해주세요.";
+  } else if (!agreement?.includes("Agree1")) {
+    msg.agreement = "서비스 이용약관에 동의해주세요.";
+  } else if (!agreement?.includes("Agree2")) {
+    msg.agreement = "개인정보수집 및 이용에 동의해주세요.";
+  }
+
+  if (!storagePeriod) {
+    msg.storagePeriod = "개인정보 유효기간을 선택해주세요.";
   }
 
   return { isValid, msg };

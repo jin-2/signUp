@@ -4,7 +4,7 @@ import { changeEventType } from "types/common";
 interface RadioProps {
   children: React.ReactNode;
   name: string;
-  value: string;
+  value: string | number;
   handleChange: changeEventType;
 }
 

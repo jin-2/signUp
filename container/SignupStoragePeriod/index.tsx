@@ -14,7 +14,7 @@ export default function SignupStoragePeriod({
   setValue
 }: SignupAgreementProps) {
   const handleChange: changeEventType = ({ target: { value } }) => {
-    setValue("storagePeriod", value);
+    setValue("storagePeriod", Number(value));
   };
 
   return (
@@ -24,13 +24,13 @@ export default function SignupStoragePeriod({
         <ButtonIcon />
       </div>
 
-      <Radio name="storagePeriod" value="365" handleChange={handleChange}>
+      <Radio name="storagePeriod" value={365} handleChange={handleChange}>
         1년
       </Radio>
-      <Radio name="storagePeriod" value="1095" handleChange={handleChange}>
+      <Radio name="storagePeriod" value={1095} handleChange={handleChange}>
         3년
       </Radio>
-      <Radio name="storagePeriod" value="0" handleChange={handleChange}>
+      <Radio name="storagePeriod" value={0} handleChange={handleChange}>
         회원탈퇴시
       </Radio>
     </Inner>

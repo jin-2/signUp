@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { forwardRef } from "react";
 import { changeEventType } from "types/common";
 
 interface InputProps {
@@ -12,35 +13,43 @@ interface InputProps {
   required?: boolean;
 }
 
-export default function Input({
-  name,
-  type,
-  label,
-  message,
-  maxlength,
-  value,
-  handleChange,
-  required = true
-}: InputProps) {
-  return (
-    <InputEl>
-      <label className="label">
-        <input
-          name={name}
-          type={type}
-          className="input"
-          maxLength={maxlength}
-          required={required}
-          value={value}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <span className="label-text">{label}</span>
-      </label>
-      <p className="message">{message}</p>
-    </InputEl>
-  );
-}
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      name,
+      type,
+      label,
+      message,
+      maxlength,
+      value,
+      handleChange,
+      required = true
+    }: InputProps,
+    ref
+  ) => {
+    return (
+      <InputEl>
+        <label className="label">
+          <input
+            ref={ref}
+            name={name}
+            type={type}
+            className="input"
+            maxLength={maxlength}
+            required={required}
+            value={value}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          <span className="label-text">{label}</span>
+        </label>
+        <p className="message">{message}</p>
+      </InputEl>
+    );
+  }
+);
+Input.displayName = "Input";
+export default Input;
 
 const InputEl = styled.div`
   margin-bottom: 14px;

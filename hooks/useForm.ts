@@ -24,15 +24,29 @@ export default function useForm<Type>(
 
   const handleChange: changeEventType = ({ target: { name, value, type } }) => {
     const newValues = { ...values, [name]: value.trim() };
-    const { isValid, msg } = validate(newValues);
     setValues(newValues);
+
+    const { isValid, msg } = validate(newValues);
     setTouched({ ...touched, [name]: true });
     setMessage(msg as MessageRecord<Type>);
     setValid(isValid);
   };
 
-  const handleSubmit: submitEventType = (e) => {
+  const handleSubmit: submitEventType = async (e) => {
     e.preventDefault();
+    const { isValid, msg } = validate(values);
+
+    const allTouched = Object.keys(values).reduce(
+      (acc, key) => ({
+        ...acc,
+        [key]: true
+      }),
+      {}
+    );
+
+    setTouched({ ...touched, ...allTouched });
+    setMessage(msg as MessageRecord<Type>);
+    setValid(isValid);
     onSubmit();
   };
 

@@ -1,18 +1,53 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useRef } from "react";
 import Input from "components/Input";
-import Title from "components/Title";
-import Radio from "components/Radio";
 import Button from "components/Button";
-import ButtonIcon from "components/ButtonIcon";
 import Inner from "components/Inner";
 import SignupAgreement from "container/SignupAgreement";
+import SignupStoragePeriod from "container/SignupStoragePeriod";
 import useForm from "hooks/useForm";
 import { FormDataType } from "types/form";
-import SignupStoragePeriod from "container/SignupStoragePeriod";
 
 const SignupPage: NextPage = () => {
-  const onSubmit = () => {};
+  const inputIdRef = useRef<HTMLInputElement>(null);
+  const inputPasswordRef = useRef<HTMLInputElement>(null);
+  const inputUserNameRef = useRef<HTMLInputElement>(null);
+  const inputEmailRef = useRef<HTMLInputElement>(null);
+
+  const onSubmit = () => {
+    if (inputIdRef.current && message.id) {
+      inputIdRef.current.focus();
+      return;
+    }
+
+    if (inputPasswordRef.current && message.password) {
+      inputPasswordRef.current.focus();
+      return;
+    }
+
+    if (inputUserNameRef.current && message.userName) {
+      inputUserNameRef.current.focus();
+      return;
+    }
+
+    if (inputEmailRef.current && message.email) {
+      inputEmailRef.current.focus();
+      return;
+    }
+
+    if (message.agreement) {
+      alert(message.agreement);
+      return;
+    }
+
+    if (message.storagePeriod) {
+      alert(message.storagePeriod);
+      return;
+    }
+
+    console.table(values);
+  };
 
   const { values, handleChange, message, touched, handleSubmit, setValue } =
     useForm<FormDataType>(
@@ -35,8 +70,9 @@ const SignupPage: NextPage = () => {
       <form onSubmit={handleSubmit} noValidate>
         <Inner>
           <Input
-            type="text"
             name="id"
+            ref={inputIdRef}
+            type="text"
             label="아이디"
             message={(touched.id && message.id) || ""}
             maxlength={16}
@@ -46,6 +82,7 @@ const SignupPage: NextPage = () => {
 
           <Input
             name="password"
+            ref={inputPasswordRef}
             type="text"
             label="비밀번호"
             message={(touched.password && message.password) || ""}
@@ -56,6 +93,7 @@ const SignupPage: NextPage = () => {
 
           <Input
             name="userName"
+            ref={inputUserNameRef}
             type="text"
             label="이름"
             message={(touched.userName && message.userName) || ""}
@@ -66,6 +104,7 @@ const SignupPage: NextPage = () => {
 
           <Input
             name="email"
+            ref={inputEmailRef}
             type="email"
             label="이메일"
             message={(touched.email && message.email) || ""}
