@@ -11,7 +11,7 @@ import useForm from "hooks/useForm";
 import { submitEventType } from "types/common";
 import { FormDataType } from "types/form";
 
-const Home: NextPage = () => {
+const SignupPage: NextPage = () => {
   const { values, handleChange, message, touched } = useForm<FormDataType>({
     id: "",
     password: "",
@@ -102,4 +102,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default SignupPage;
