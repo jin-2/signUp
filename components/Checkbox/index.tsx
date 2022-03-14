@@ -8,12 +8,7 @@ interface CheckboxProps {
   handleChange: changeEventType;
 }
 
-export default function Checkbox({
-  children,
-  name,
-  checked,
-  handleChange
-}: CheckboxProps) {
+const Checkbox = ({ children, name, checked, handleChange }: CheckboxProps) => {
   return (
     <CheckboxEl>
       <label className="label">
@@ -28,7 +23,8 @@ export default function Checkbox({
       </label>
     </CheckboxEl>
   );
-}
+};
+export default Checkbox;
 
 const CheckboxEl = styled.p`
   position: relative;

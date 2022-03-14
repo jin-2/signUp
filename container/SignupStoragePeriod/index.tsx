@@ -10,9 +10,7 @@ interface SignupAgreementProps {
   setValue: SetValueType<FormDataType>;
 }
 
-export default function SignupStoragePeriod({
-  setValue
-}: SignupAgreementProps) {
+const SignupStoragePeriod = ({ setValue }: SignupAgreementProps) => {
   const handleChange: changeEventType = ({ target: { value } }) => {
     setValue("storagePeriod", Number(value));
   };
@@ -35,4 +33,5 @@ export default function SignupStoragePeriod({
       </Radio>
     </Inner>
   );
-}
+};
+export default SignupStoragePeriod;

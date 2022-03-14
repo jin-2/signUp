@@ -21,7 +21,7 @@ interface CheckListType {
   Agree3: boolean;
 }
 
-export default function SignupAgreement({ setValue }: SignupAgreementProps) {
+const SignupAgreement = ({ setValue }: SignupAgreementProps) => {
   const [checkList, setCheckList] = useState<CheckListType>({
     Agree5: false,
     Agree1: false,
@@ -30,7 +30,7 @@ export default function SignupAgreement({ setValue }: SignupAgreementProps) {
     Agree3: false
   });
 
-  const getNewCheckList = (checked: boolean) => {
+  const getNewCheckList = (checked: boolean): {} => {
     return Object.keys(checkList).reduce(
       (obj, key) => ({
         ...obj,
@@ -40,7 +40,7 @@ export default function SignupAgreement({ setValue }: SignupAgreementProps) {
     );
   };
 
-  const setCheckedNameList = (obj: CheckListType) => {
+  const setCheckedNameList = (obj: CheckListType): string[] => {
     return Object.keys(obj).filter((item) => obj[item]);
   };
 
@@ -60,7 +60,7 @@ export default function SignupAgreement({ setValue }: SignupAgreementProps) {
     setValue("agreement", setCheckedNameList(newObj));
   };
 
-  const setCheckedAllCheckbox = () => {
+  const setCheckedAllCheckbox = (): boolean => {
     return Object.values(checkList).every((item) => item);
   };
 
@@ -122,4 +122,5 @@ export default function SignupAgreement({ setValue }: SignupAgreementProps) {
       </Checkbox>
     </Inner>
   );
-}
+};
+export default SignupAgreement;

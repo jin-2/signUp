@@ -5,9 +5,10 @@ interface InnerProps {
   paddingTop?: string;
 }
 
-export default function Inner({ children, paddingTop }: InnerProps) {
+const Inner = ({ children, paddingTop }: InnerProps) => {
   return <InnerEl paddingTop={paddingTop}>{children}</InnerEl>;
-}
+};
+export default Inner;
 
 interface InnerElProps {
   paddingTop?: string;

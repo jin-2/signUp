@@ -15,7 +15,7 @@ const SignupPage: NextPage = () => {
   const inputUserNameRef = useRef<HTMLInputElement>(null);
   const inputEmailRef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = (msg: MessageRecord<FormDataType>) => {
+  const onSubmit = (msg: MessageRecord<FormDataType>): void => {
     if (inputIdRef.current && msg.id) {
       inputIdRef.current.focus();
       return;
@@ -69,7 +69,7 @@ const SignupPage: NextPage = () => {
     onSubmit
   );
 
-  const isDisabledSubmitButton = () => {
+  const isDisabledSubmitButton = (): boolean => {
     if (!Object.keys(touched).length) {
       return true;
     }

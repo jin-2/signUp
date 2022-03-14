@@ -6,17 +6,18 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export default function Button({
+const Button = ({
   children,
   className = "",
   disabled = false
-}: ButtonProps) {
+}: ButtonProps) => {
   return (
     <ButtonEl className={className} disabled={disabled}>
       {children}
     </ButtonEl>
   );
-}
+};
+export default Button;
 
 const ButtonEl = styled.button`
   width: 100%;

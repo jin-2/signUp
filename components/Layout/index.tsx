@@ -4,7 +4,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <HeaderEl>
@@ -18,7 +18,8 @@ export default function Layout({ children }: LayoutProps) {
       </FooterEl>
     </div>
   );
-}
+};
+export default Layout;
 
 const HeaderEl = styled.header`
   padding: 14px 18px;

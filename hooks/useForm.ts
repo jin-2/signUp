@@ -6,10 +6,10 @@ export type MessageRecord<T> = Partial<Record<keyof T, string>>;
 type TouchedRecord<T> = Partial<Record<keyof T, boolean>>;
 export type SetValueType<T> = (name: keyof T, value: T[keyof T]) => void;
 
-export default function useForm<Type>(
+const useForm = <Type>(
   initialValues: Type,
   onSubmit: (msg: MessageRecord<Type>) => void
-) {
+) => {
   const [values, setValues] = useState<Type>(initialValues);
   const [message, setMessage] = useState<MessageRecord<Type>>({});
   const [touched, setTouched] = useState<TouchedRecord<Type>>({});
@@ -64,4 +64,5 @@ export default function useForm<Type>(
     handleSubmit,
     setValue
   };
-}
+};
+export default useForm;

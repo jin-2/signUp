@@ -5,10 +5,9 @@ interface DividerProps {
   marginBottom?: string;
 }
 
-function Divider({ marginTop, marginBottom }: DividerProps) {
+const Divider = ({ marginTop, marginBottom }: DividerProps) => {
   return <DividerEl marginTop={marginTop} marginBottom={marginBottom} />;
-}
-
+};
 export default Divider;
 
 const DividerEl = styled.hr<DividerProps>`

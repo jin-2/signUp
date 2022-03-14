@@ -5,9 +5,10 @@ interface TitleProps {
   element?: "h2" | "h3";
 }
 
-export default function Title({ children, element = "h2" }: TitleProps) {
+const Title = ({ children, element = "h2" }: TitleProps) => {
   return <TitleEl as={element}>{children}</TitleEl>;
-}
+};
+export default Title;
 
 const TitleEl = styled.h2`
   display: inline-block;

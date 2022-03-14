@@ -5,9 +5,10 @@ interface MarkProps {
   color?: "primary" | "secondary";
 }
 
-export default function Mark({ children, color = "primary" }: MarkProps) {
+const Mark = ({ children, color = "primary" }: MarkProps) => {
   return <MarkEl className={color}>{children}</MarkEl>;
-}
+};
+export default Mark;
 
 const MarkEl = styled.span`
   &.primary {

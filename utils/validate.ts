@@ -25,14 +25,14 @@ const isRepeatOneCharacter = (value: string): boolean => {
   return value.length === counting;
 };
 
-export default function validate({
+const validate = ({
   id = "",
   password = "",
   userName = "",
   email = "",
   agreement = [],
   storagePeriod = null
-}: FormDataPartial) {
+}: FormDataPartial) => {
   const msg: MessageRecord<FormDataType> = {
     id: "",
     password: "",
@@ -95,4 +95,5 @@ export default function validate({
   }
 
   return { msg };
-}
+};
+export default validate;

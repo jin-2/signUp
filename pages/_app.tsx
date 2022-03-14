@@ -4,7 +4,7 @@ import theme from "styles/theme";
 import GlobalStyle from "styles/GlobalStyle";
 import Layout from "components/Layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -13,6 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Layout>
     </ThemeProvider>
   );
-}
+};
 
 export default MyApp;

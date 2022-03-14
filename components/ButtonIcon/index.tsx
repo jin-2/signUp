@@ -4,7 +4,7 @@ interface ButtonIconProps {
   icon?: "info";
 }
 
-export default function ButtonIcon({ icon = "info" }: ButtonIconProps) {
+const ButtonIcon = ({ icon = "info" }: ButtonIconProps) => {
   const setAlt = () => {
     switch (icon) {
       case "info":
@@ -15,11 +15,12 @@ export default function ButtonIcon({ icon = "info" }: ButtonIconProps) {
   };
 
   return (
-    <ButtonIconEl>
+    <ButtonIconEl type="button">
       <img src={`/images/icon-${icon}.svg`} alt={setAlt()} />
     </ButtonIconEl>
   );
-}
+};
+export default ButtonIcon;
 
 const ButtonIconEl = styled.button`
   padding: 6px;

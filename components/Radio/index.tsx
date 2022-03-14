@@ -8,12 +8,7 @@ interface RadioProps {
   handleChange: changeEventType;
 }
 
-export default function Radio({
-  children,
-  name,
-  value,
-  handleChange
-}: RadioProps) {
+const Radio = ({ children, name, value, handleChange }: RadioProps) => {
   return (
     <RadioEl>
       <label className="label">
@@ -28,7 +23,8 @@ export default function Radio({
       </label>
     </RadioEl>
   );
-}
+};
+export default Radio;
 
 const RadioEl = styled.p`
   position: relative;
