@@ -13,24 +13,24 @@ export default function useForm<Type>(
   const [values, setValues] = useState<Type>(initialValues);
   const [message, setMessage] = useState<MessageRecord<Type>>({});
   const [touched, setTouched] = useState<TouchedRecord<Type>>({});
-  const [isValid, setValid] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
-  const setValue: SetValueType<Type> = (name, value) => {
-    setValues((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
+  const validation = (obj: Type) => {
+    const { msg } = validate(obj);
+    setMessage(msg as MessageRecord<Type>);
   };
 
-  const handleChange: changeEventType = ({ target: { name, value, type } }) => {
+  const setValue: SetValueType<Type> = (name, value) => {
+    const newValues = { ...values, [name]: value };
+    setValues(newValues);
+    validation(newValues);
+  };
+
+  const handleChange: changeEventType = ({ target: { name, value } }) => {
     const newValues = { ...values, [name]: value.trim() };
     setValues(newValues);
-
-    const { isValid, msg } = validate(newValues);
     setTouched({ ...touched, [name]: true });
-    setMessage(msg as MessageRecord<Type>);
-    setValid(isValid);
+    validation(newValues);
   };
 
   const allTouched = Object.keys(values).reduce(
@@ -43,15 +43,25 @@ export default function useForm<Type>(
 
   const handleSubmit: submitEventType = async (e) => {
     e.preventDefault();
+
     setSubmitting(true);
-    const { isValid, msg } = validate(values);
 
     setTouched({ ...touched, ...allTouched });
+
+    const { msg } = validate(values);
     setMessage(msg as MessageRecord<Type>);
-    setValid(isValid);
     onSubmit(msg as MessageRecord<Type>);
+
     setSubmitting(false);
   };
 
-  return { values, message, touched, handleChange, handleSubmit, setValue };
+  return {
+    submitting,
+    values,
+    message,
+    touched,
+    handleChange,
+    handleSubmit,
+    setValue
+  };
 }

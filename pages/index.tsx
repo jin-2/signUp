@@ -49,18 +49,25 @@ const SignupPage: NextPage = () => {
     console.table(values);
   };
 
-  const { values, handleChange, message, touched, handleSubmit, setValue } =
-    useForm<FormDataType>(
-      {
-        id: "",
-        password: "",
-        userName: "",
-        email: "",
-        agreement: [],
-        storagePeriod: null
-      },
-      onSubmit
-    );
+  const {
+    submitting,
+    values,
+    handleChange,
+    message,
+    touched,
+    handleSubmit,
+    setValue
+  } = useForm<FormDataType>(
+    {
+      id: "",
+      password: "",
+      userName: "",
+      email: "",
+      agreement: [],
+      storagePeriod: null
+    },
+    onSubmit
+  );
 
   return (
     <>
@@ -119,7 +126,16 @@ const SignupPage: NextPage = () => {
         <SignupStoragePeriod setValue={setValue} />
 
         <Inner paddingTop="44px">
-          <Button>가입하기</Button>
+          <Button
+            disabled={submitting}
+            className={
+              Object.values(message).filter((v) => v).length !== 0
+                ? "disabled"
+                : ""
+            }
+          >
+            가입하기
+          </Button>
         </Inner>
       </form>
     </>

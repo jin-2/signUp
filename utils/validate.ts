@@ -19,9 +19,6 @@ export default function validate({
   agreement = [],
   storagePeriod = null
 }: FormDataPartial) {
-  console.log(id, password, userName, email);
-  let isValid = false;
-
   const msg: MessageRecord<FormDataType> = {
     id: "",
     password: "",
@@ -72,5 +69,5 @@ export default function validate({
     msg.storagePeriod = "개인정보 유효기간을 선택해주세요.";
   }
 
-  return { isValid, msg };
+  return { msg };
 }

@@ -2,11 +2,20 @@ import styled from "styled-components";
 
 interface ButtonProps {
   children: string;
+  className?: string;
   disabled?: boolean;
 }
 
-export default function Button({ children, disabled = false }: ButtonProps) {
-  return <ButtonEl disabled={disabled}>{children}</ButtonEl>;
+export default function Button({
+  children,
+  className = "",
+  disabled = false
+}: ButtonProps) {
+  return (
+    <ButtonEl className={className} disabled={disabled}>
+      {children}
+    </ButtonEl>
+  );
 }
 
 const ButtonEl = styled.button`
@@ -21,6 +30,9 @@ const ButtonEl = styled.button`
 
   &:disabled {
     pointer-events: none;
+  }
+
+  &.disabled {
     color: #999;
     border-color: #ced3d7;
     background-color: #e5e7ea;
