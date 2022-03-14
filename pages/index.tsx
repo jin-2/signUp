@@ -6,7 +6,7 @@ import Button from "components/Button";
 import Inner from "components/Inner";
 import SignupAgreement from "container/SignupAgreement";
 import SignupStoragePeriod from "container/SignupStoragePeriod";
-import useForm from "hooks/useForm";
+import useForm, { MessageRecord } from "hooks/useForm";
 import { FormDataType } from "types/form";
 
 const SignupPage: NextPage = () => {
@@ -15,34 +15,34 @@ const SignupPage: NextPage = () => {
   const inputUserNameRef = useRef<HTMLInputElement>(null);
   const inputEmailRef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = () => {
-    if (inputIdRef.current && message.id) {
+  const onSubmit = (msg: MessageRecord<FormDataType>) => {
+    if (inputIdRef.current && msg.id) {
       inputIdRef.current.focus();
       return;
     }
 
-    if (inputPasswordRef.current && message.password) {
+    if (inputPasswordRef.current && msg.password) {
       inputPasswordRef.current.focus();
       return;
     }
 
-    if (inputUserNameRef.current && message.userName) {
+    if (inputUserNameRef.current && msg.userName) {
       inputUserNameRef.current.focus();
       return;
     }
 
-    if (inputEmailRef.current && message.email) {
+    if (inputEmailRef.current && msg.email) {
       inputEmailRef.current.focus();
       return;
     }
 
-    if (message.agreement) {
-      alert(message.agreement);
+    if (msg.agreement) {
+      alert(msg.agreement);
       return;
     }
 
-    if (message.storagePeriod) {
-      alert(message.storagePeriod);
+    if (msg.storagePeriod) {
+      alert(msg.storagePeriod);
       return;
     }
 

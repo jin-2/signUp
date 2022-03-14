@@ -41,8 +41,8 @@ export default function SignupAgreement({ setValue }: SignupAgreementProps) {
     target: { name, checked }
   }) => {
     const newObj = Object.keys(checkList).reduce(
-      (acc, key) => ({
-        ...acc,
+      (obj, key) => ({
+        ...obj,
         [key]: checked
       }),
       {}
