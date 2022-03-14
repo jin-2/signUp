@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import { changeEventType } from "types/common";
 
 interface RadioProps {
   children: React.ReactNode;
   name: string;
   value: string;
+  handleChange: changeEventType;
 }
 
-export default function Radio({ children, name, value }: RadioProps) {
+export default function Radio({
+  children,
+  name,
+  value,
+  handleChange
+}: RadioProps) {
   return (
     <RadioEl>
       <label className="label">
@@ -14,6 +21,7 @@ export default function Radio({ children, name, value }: RadioProps) {
           type="radio"
           name={name}
           value={value}
+          onChange={handleChange}
           className="visually-hidden"
         />
         <span className="label-text">{children}</span>

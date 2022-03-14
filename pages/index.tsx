@@ -9,6 +9,7 @@ import Inner from "components/Inner";
 import SignupAgreement from "container/SignupAgreement";
 import useForm from "hooks/useForm";
 import { FormDataType } from "types/form";
+import SignupStoragePeriod from "container/SignupStoragePeriod";
 
 const SignupPage: NextPage = () => {
   const onSubmit = () => {};
@@ -76,22 +77,7 @@ const SignupPage: NextPage = () => {
 
         <SignupAgreement setValue={setValue} />
 
-        <Inner>
-          <div>
-            <Title>개인정보 유효기간</Title>
-            <ButtonIcon />
-          </div>
-
-          <Radio name="storagePeriod" value="365">
-            1년
-          </Radio>
-          <Radio name="storagePeriod" value="1095">
-            3년
-          </Radio>
-          <Radio name="storagePeriod" value="0">
-            회원탈퇴시
-          </Radio>
-        </Inner>
+        <SignupStoragePeriod setValue={setValue} />
 
         <Inner paddingTop="44px">
           <Button>가입하기</Button>
